@@ -27,7 +27,7 @@ public class HomeWorkApp {
         int value = 145;
         if (value <= 0) {
             System.out.println("Красный");
-        } else if (value > 0 && value <= 100) {
+        } else if (value > 0 & value <= 100) {
             System.out.println("Желтый");
         } else {
             System.out.println("Зеленый");
@@ -37,7 +37,10 @@ public class HomeWorkApp {
     private static void compareNumbers() {              //fifth exercise
         int a = 48;
         int b = 48;
-        if (a >= b) System.out.println("a >= b");
-        else System.out.println("a < b");
+        if (a >= b) {
+            System.out.println("a >= b");
+        } else {
+            System.out.println("a < b");
+        }
     }
 }
