@@ -46,9 +46,9 @@ public class HomeWorkApp {
         }
     }
 
-    public static void writeString(int a, String str) {                //overload for variant
+    public static void writeString(int b, String str) {                //overload for variant
         int i = 0;
-        while (i < a) {
+        while (i < b) {
             System.out.println(str);
             i++;
         }
