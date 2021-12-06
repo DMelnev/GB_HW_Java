@@ -74,7 +74,7 @@ public class HomeWorkApp {
         return array;
     }
 
-    public static boolean findTits(int[] array) {
+    public static boolean findTits(int[] array) {                               //seventh exercise
         for (int i = 1; i < array.length; i++) {
             int sumLeft = 0, sumRight = 0;
             for (int j = 0; j < i; j++) sumLeft += array[j];
