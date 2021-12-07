@@ -32,15 +32,14 @@ public class HomeWorkApp {
         System.out.println(Arrays.toString(arrayInt_3));
 
         //exercise four:
-        int[][] arrayInt_4 = new int[5][5];
+        int[][] arrayInt_4 = new int[10][10];
         for (int i = 0; i < arrayInt_4.length; i++) {
             for (int j = 0; j < arrayInt_4[0].length; j++) {
                 arrayInt_4[i][j] = (i == j || i == arrayInt_4[0].length - j - 1) ? 1 : 0;
             }
         }
         System.out.println("exercise 4:");
-        for (int[] ints : arrayInt_4) System.out.println(Arrays.toString(ints)); // чесслово это не я)) оно само )
-        //for (int i=0; i < arrayInt_4.length;i++) System.out.println(Arrays.toString(arrayInt_4[i])); // это моё
+        for (int[] ints : arrayInt_4) System.out.println(Arrays.toString(ints));
 
         //exercise five:
         System.out.println("exercise 5:");
@@ -48,10 +47,10 @@ public class HomeWorkApp {
 
         //exercise six
         int[] arrayInt_6 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-        int maxValue = arrayInt_6[0], minValue = maxValue;
-        for (int i = 1; i < arrayInt_6.length; i++) {
-            maxValue = Math.max(arrayInt_6[i], maxValue);
-            minValue = Math.min(arrayInt_6[i], minValue);
+        int maxValue = arrayInt_6[0], minValue = arrayInt_6[0];
+        for (int j : arrayInt_6) {
+            maxValue = Math.max(j, maxValue);
+            minValue = Math.min(j, minValue);
         }
         System.out.println("exercise 6:");
         System.out.printf("min value is %d, max value is %d\n", minValue, maxValue);
