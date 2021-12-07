@@ -1,5 +1,6 @@
 package lesson3;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -63,7 +64,10 @@ public class HomeWorkApp {
         //int[] arrayInt_7 = new int[]{1, 5, 6}; // true
         System.out.println("exercise 7:");
         System.out.println(Arrays.toString(arrayInt_7));
-        System.out.printf("Left part has %ssame right part\n", (findSameParts(arrayInt_7)) ? "" : "not ");
+//        System.out.printf("Left part has %ssame right part\n", (findSameParts(arrayInt_7)) ? "" : "not ");
+        System.out.print("Left part has ");                         // не усложняем (((
+        if (!findSameParts(arrayInt_7)) System.out.print("not ");
+        System.out.println("same right part");
 
         //exercise eight
         int[] arrayInt_8 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 7};
