@@ -10,7 +10,9 @@ public class HomeWorkApp {
         //prepare:
         Random rnd = new Random();
         int[] arrayInt = new int[10];
-        for (int i = 0; i < arrayInt.length; i++) arrayInt[i] = rnd.nextInt(2);
+        for (int i = 0; i < arrayInt.length; i++) {
+            arrayInt[i] = rnd.nextInt(2);
+        }
         System.out.println("exercise 1:");
         System.out.println(Arrays.toString(arrayInt));
         // solution:
@@ -56,9 +58,9 @@ public class HomeWorkApp {
         System.out.printf("min value is %d, max value is %d\n", minValue, maxValue);
 
         //exercise seven:
-        //int[] arrayInt_7 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-        int[] arrayInt_7 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 7};
-        //int[] arrayInt_7 = new int[]{1, 5, 6};
+        //int[] arrayInt_7 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1}; // false
+        int[] arrayInt_7 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 7}; // true
+        //int[] arrayInt_7 = new int[]{1, 5, 6}; // true
         System.out.println("exercise 7:");
         System.out.println(Arrays.toString(arrayInt_7));
         System.out.printf("Left part has %ssame right part\n", (findSameParts(arrayInt_7)) ? "" : "not ");
