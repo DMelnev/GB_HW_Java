@@ -26,7 +26,7 @@ public class HomeWorkApp {
         //exercise three
         int[] arrayInt_3 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         for (int i = 0; i < arrayInt_3.length; i++) {
-            arrayInt_3[i] = (arrayInt_3[i] < 6) ? arrayInt_3[i] * 2 : arrayInt_3[i];
+            arrayInt_3[i] *= (arrayInt_3[i] < 6) ? 2 : 1;
         }
         System.out.println("exercise 3:");
         System.out.println(Arrays.toString(arrayInt_3));
@@ -61,8 +61,15 @@ public class HomeWorkApp {
         //int[] arrayInt_7 = new int[]{1, 5, 6};
         System.out.println("exercise 7:");
         System.out.println(Arrays.toString(arrayInt_7));
-        System.out.printf("Left part has %ssame right part\n", (findTits(arrayInt_7)) ? "" : "not ");
+        System.out.printf("Left part has %ssame right part\n", (findSameParts(arrayInt_7)) ? "" : "not ");
 
+        //exercise eight
+        int[] arrayInt_8 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 7};
+        int shifting = 12; // - left, + right
+        System.out.println("exercise 8:");
+        System.out.printf("Shifting by %d steps, %s way.\n", shifting, (shifting < 0) ? "left" : "right");
+        System.out.println(Arrays.toString(arrayInt_8));
+        System.out.println(Arrays.toString(arrayShift(arrayInt_8, shifting)));
     }
 
 
@@ -73,7 +80,7 @@ public class HomeWorkApp {
         return array;
     }
 
-    public static boolean findTits(int[] array) {                               //seventh exercise
+    public static boolean findSameParts(int[] array) {                               //seventh exercise
         for (int i = 1; i < array.length; i++) {
             int sumLeft = 0, sumRight = 0;
             for (int j = 0; j < i; j++) sumLeft += array[j];
@@ -81,6 +88,19 @@ public class HomeWorkApp {
             if (sumLeft == sumRight) return true;
         }
         return false;
+    }
+
+    public static int[] arrayShift(int[] array, int shift) {                    // eighth exercise
+        shift %= array.length;                                                          // убираем все лишнее
+        shift += (shift < 0) ? array.length : 0;                                        // выбираем направление
+        while (shift > 0) {                                                             // запускаем shift сдвигов
+            int lastElement = array[array.length - 1];                                  // сохраняем последний элемент
+//   for (int i = array.length - 2; i >= 0; i--) array[i + 1] = array[i];// так задумано, но IDE решило что ниже лучше.
+            System.arraycopy(array, 0, array, 1, array.length - 1); // сдвигаем на 1
+            array[0] = lastElement;                                                    // восстанавливаем первый элемент
+            shift--;
+        }
+        return array;
     }
 
 }
