@@ -65,7 +65,7 @@ public class HomeWorkApp {
         System.out.println("exercise 7:");
         System.out.println(Arrays.toString(arrayInt_7));
 //        System.out.printf("Left part has %ssame right part\n", (findSameParts(arrayInt_7)) ? "" : "not ");
-        System.out.print("Left part has ");                         // не усложняем (((
+        System.out.print("Left part has ");
         if (!findSameParts(arrayInt_7)) System.out.print("not ");
         System.out.println("same right part");
 
