@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class HomeWorkApp {
     public static char[][] map;
-    public static final int SIZE = 5;
-    public static final int SET = 3;
+    public static final int SIZE = 5; // map size
+    public static final int SET = 3;  // game set for win
 
-    public static char DOT_EMPTY = '•';
-    public static char DOT_HUMAN = 'X';
-    public static char DOT_AI = 'O';
+    public static final char DOT_EMPTY = '•';
+    public static final char DOT_HUMAN = 'X';
+    public static final char DOT_AI = 'O';
 
     private static Scanner input = new Scanner(System.in);
     private static Random rnd = new Random();
@@ -30,6 +30,11 @@ public class HomeWorkApp {
             if (checkVin(DOT_AI)) {
                 printMap();
                 System.out.println("Вы проиграли!");
+                break;
+            }
+            if (checkDrawn()){
+                printMap();
+                System.out.println("Ничья!");
                 break;
             }
         }
@@ -101,6 +106,14 @@ public class HomeWorkApp {
             }
         }
         return false;
+    }
+    private static boolean checkDrawn(){
+        for (char[] x : map){
+            for (char point : x){
+                if (point == DOT_EMPTY) return false;
+            }
+        }
+        return true;
     }
 
 }
