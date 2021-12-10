@@ -65,5 +65,12 @@ public class HomeWorkApp {
     private static boolean checkInput(int x, int y) {
         return x < 0 || x >= SIZE || y < 0 || y >= SIZE || map[x][y] != DOT_EMPTY;
     }
+    private static void checkPreVin(char point){
+        int x, y, count;
+        int size = SIZE - SET;
+        //matrix 1
+
+
+    }
 
 }
