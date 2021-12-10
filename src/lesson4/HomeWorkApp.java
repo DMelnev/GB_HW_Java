@@ -21,13 +21,13 @@ public class HomeWorkApp {
         while (true) {
             printMap();
             humanMove();
-            if (checkVin(DOT_HUMAN, true)) {
+            if (checkVin(DOT_HUMAN)) {
                 printMap();
                 System.out.println("Вы победили!");
                 break;
             }
             aiMove();
-            if (checkVin(DOT_AI, false)) {
+            if (checkVin(DOT_AI)) {
                 printMap();
                 System.out.println("Вы проиграли!");
                 break;
@@ -81,7 +81,7 @@ public class HomeWorkApp {
         return x < 0 || x >= SIZE || y < 0 || y >= SIZE || map[x][y] != DOT_EMPTY;
     }
 
-    private static boolean checkVin(char point, boolean debug) {
+    private static boolean checkVin(char point) {
         int border = SIZE - SET;  // граница положения фреймов
         // перебираем фреймы на всей карте
         for (int i = 0; i <= border; i++) { //столбец карты
