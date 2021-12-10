@@ -21,7 +21,17 @@ public class HomeWorkApp {
         while (true) {
             printMap();
             humanMove();
+            if (checkVin(DOT_HUMAN)) {
+                printMap();
+                System.out.println("Вы победили!");
+                break;
+            }
             aiMove();
+            if (checkVin(DOT_AI)) {
+                printMap();
+                System.out.println("Вы проиграли!");
+                break;
+            }
         }
     }
 
@@ -65,12 +75,32 @@ public class HomeWorkApp {
     private static boolean checkInput(int x, int y) {
         return x < 0 || x >= SIZE || y < 0 || y >= SIZE || map[x][y] != DOT_EMPTY;
     }
-    private static void checkPreVin(char point){
-        int x, y, count;
+
+    private static boolean checkVin(char point) {
         int size = SIZE - SET;
-        //matrix 1
-
-
+        for (int i = 0; i <= size; i++) {
+            for (int j = 0; j <= size; j++) {
+                // matrix
+                int countY = 0, countX = 0, countA = 0, countB = 0;
+                for (int x = i; x < i + SET; x++) {
+                    countY = 0; countX = 0;
+                    for (int y = j; y < j + SET; y++) {
+                        if (map[x][y] == point) countY++;   //horizontal
+                        if (map[y][x] == point) countX++;   //vertical
+                        if (x == y)
+                            if (map[x][y] == point) countA++;   // main diagonal
+                        if (x == SET - y - 1)
+                            if (map[x][y] == point) countB++;   // second diagonal
+                        if (countA >= SET) System.out.println("A win");
+                        if (countB >= SET) System.out.println("B win");
+                        if (countX >= SET) System.out.println("X win");
+                        if (countY >= SET) System.out.println("Y win");
+                        if (countA >= SET || countB >= SET || countX >= SET || countY >= SET) return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }
