@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class HomeWorkApp {
     public static char[][] map;
-    public static final int SIZE = 5; // map size
+    public static final int SIZE = 3; // map size
     public static final int SET = 3;  // game set for win
 
     public static final char DOT_EMPTY = '•';
     public static final char DOT_HUMAN = 'X';
     public static final char DOT_AI = 'O';
 
-    private static Scanner input = new Scanner(System.in);
-    private static Random rnd = new Random();
+    private static final Scanner input = new Scanner(System.in);
+    private static final Random rnd = new Random();
 
     public static void main(String[] args) {
         initMap();
@@ -26,15 +26,15 @@ public class HomeWorkApp {
                 System.out.println("Вы победили!");
                 break;
             }
+            if (checkDrawn()) {
+                printMap();
+                System.out.println("Ничья!");
+                break;
+            }
             aiMove();
             if (checkVin(DOT_AI)) {
                 printMap();
                 System.out.println("Вы проиграли!");
-                break;
-            }
-            if (checkDrawn()) {
-                printMap();
-                System.out.println("Ничья!");
                 break;
             }
         }
