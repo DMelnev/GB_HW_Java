@@ -21,18 +21,18 @@ public class HomeWorkApp {
         while (true) {
             printMap();
             humanMove();
-            if (checkVin(DOT_HUMAN)) {
+            if (checkVin(DOT_HUMAN, true)) {
                 printMap();
                 System.out.println("Вы победили!");
                 break;
             }
             aiMove();
-            if (checkVin(DOT_AI)) {
+            if (checkVin(DOT_AI, false)) {
                 printMap();
                 System.out.println("Вы проиграли!");
                 break;
             }
-            if (checkDrawn()){
+            if (checkDrawn()) {
                 printMap();
                 System.out.println("Ничья!");
                 break;
@@ -81,35 +81,33 @@ public class HomeWorkApp {
         return x < 0 || x >= SIZE || y < 0 || y >= SIZE || map[x][y] != DOT_EMPTY;
     }
 
-    private static boolean checkVin(char point) {
-        int size = SIZE - SET;
-        for (int i = 0; i <= size; i++) {
-            for (int j = 0; j <= size; j++) {
-                // matrix
-                int countY = 0, countX = 0, countA = 0, countB = 0;
-                for (int x = i; x < i + SET; x++) {
-                    countY = 0; countX = 0;
-                    for (int y = j; y < j + SET; y++) {
-                        if (map[x][y] == point) countY++;   //horizontal
-                        if (map[y][x] == point) countX++;   //vertical
-                        if (x == y)
-                            if (map[x][y] == point) countA++;   // main diagonal
-                        if (x == SET - y - 1)
-                            if (map[x][y] == point) countB++;   // second diagonal
-                        if (countA >= SET) System.out.println("A win");
-                        if (countB >= SET) System.out.println("B win");
-                        if (countX >= SET) System.out.println("X win");
-                        if (countY >= SET) System.out.println("Y win");
-                        if (countA >= SET || countB >= SET || countX >= SET || countY >= SET) return true;
+    private static boolean checkVin(char point, boolean debug) {
+        int border = SIZE - SET;  // граница положения фреймов
+        // перебираем фреймы на всей карте
+        for (int i = 0; i <= border; i++) { //столбец карты
+            for (int j = 0; j <= border; j++) { //строка карты
+                // перебираем внутри фрейма
+                int countA = 0, countB = 0; //reset diagonal counters
+                for (int x = 0; x < SET; x++) { //столбец фрейма
+                    int countY = 0, countX = 0; //reset line counters
+                    for (int y = 0; y < SET; y++) { //строка фрейма
+                        if (map[x + i][y + j] == point) countY++;               //проверяем горизонтали
+                        if (map[y + j][x + i] == point) countX++;               //проверяем вертикали
+                        if (x == y) {                                           //если диагональ
+                            if (map[x + i][y + j] == point) countA++;           //проверяем главную диагональ фрейма
+                            if (map[x + i][SET - y - 1 + j] == point) countB++; //testing additional diagonal of frame
+                        }
+                        if (countA >= SET || countB >= SET || countX >= SET || countY >= SET) return true;//нашли?
                     }
                 }
             }
         }
         return false;
     }
-    private static boolean checkDrawn(){
-        for (char[] x : map){
-            for (char point : x){
+
+    private static boolean checkDrawn() {
+        for (char[] x : map) {
+            for (char point : x) {
                 if (point == DOT_EMPTY) return false;
             }
         }
