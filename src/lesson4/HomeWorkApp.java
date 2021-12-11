@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class HomeWorkApp {
     public static char[][] map;
-    public static final int SIZE = 3; // map size
-    public static final int SET = 3;  // game set for win
+    public static final int SIZE = 5; // размер поля
+    public static final int SET = 3;  // длина победной линии
 
     public static final char DOT_EMPTY = '•';
     public static final char DOT_HUMAN = 'X';
     public static final char DOT_AI = 'O';
 
-    private static final Scanner input = new Scanner(System.in);
-    private static final Random rnd = new Random();
+    private static final Scanner input = new Scanner(System.in); // IDEA подсказала, что нужно сделать final
+    private static final Random rnd = new Random();// IDEA подсказала, что нужно сделать final
 
     public static void main(String[] args) {
         initMap();
@@ -42,11 +42,14 @@ public class HomeWorkApp {
 
     public static void initMap() {
         map = new char[SIZE][SIZE];
-        for (char[] line : map) Arrays.fill(line, DOT_EMPTY);
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) map[i][j] = DOT_EMPTY;
+        }
     }
 
     public static void printMap() {
-        for (int i = 0; i < SIZE + 1; i++) System.out.print(i + "  ");
+        System.out.print("   ");
+        for (int i = 1; i < SIZE + 1; i++) System.out.print(i + "  ");
         System.out.println();
         int i = 1;
         for (char[] line : map) {
@@ -78,7 +81,7 @@ public class HomeWorkApp {
     }
 
     private static boolean checkInput(int x, int y) {
-        return x < 0 || x >= SIZE || y < 0 || y >= SIZE || map[x][y] != DOT_EMPTY;
+        return (x < 0) || (x >= SIZE) || (y < 0) || (y >= SIZE) || (map[x][y] != DOT_EMPTY);
     }
 
     private static boolean checkVin(char point) {
@@ -87,17 +90,17 @@ public class HomeWorkApp {
         for (int i = 0; i <= border; i++) { //столбец карты
             for (int j = 0; j <= border; j++) { //строка карты
                 // перебираем внутри фрейма
-                int countA = 0, countB = 0; //reset diagonal counters
+                int countA = 0, countB = 0; //инициализация счетчиков по диагоналям
                 for (int x = 0; x < SET; x++) { //столбец фрейма
-                    int countY = 0, countX = 0; //reset line counters
+                    int countY = 0, countX = 0; //инициализация счетчиков по строкам
                     for (int y = 0; y < SET; y++) { //строка фрейма
                         if (map[x + i][y + j] == point) countY++;               //проверяем горизонтали
                         if (map[y + j][x + i] == point) countX++;               //проверяем вертикали
                         if (x == y) {                                           //если диагональ
                             if (map[x + i][y + j] == point) countA++;           //проверяем главную диагональ фрейма
-                            if (map[x + i][SET - y - 1 + j] == point) countB++; //testing additional diagonal of frame
+                            if (map[x + i][SET - y - 1 + j] == point) countB++; //проверяем доп. диагональ
                         }
-                        if (countA >= SET || countB >= SET || countX >= SET || countY >= SET) return true;//нашли?
+                        if (countA >= SET || countB >= SET || countX >= SET || countY >= SET) return true;//если нашли
                     }
                 }
             }
@@ -106,12 +109,12 @@ public class HomeWorkApp {
     }
 
     private static boolean checkDrawn() {
-        for (char[] x : map) {
-            for (char point : x) {
-                if (point == DOT_EMPTY) return false;
+        for (int x = 0; x < SIZE; x++) { //перебираю столбцы
+            for (int y = 0; y < SIZE; y++) { //перебираю содержимое столбцов
+                if (map[x][y] == DOT_EMPTY) return false; //если встретил пусто
             }
         }
-        return true;
+        return true; // ничего не нашли, ничья.
     }
 
 }
