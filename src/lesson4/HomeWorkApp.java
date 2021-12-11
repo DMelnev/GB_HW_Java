@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class HomeWorkApp {
     public static char[][] map;
-    public static final int SIZE = 5; // размер поля
-    public static final int SET = 3;  // длина победной линии
+    public static final int SIZE = 5; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это)
+    public static final int SET = 3;  // длина победной линии минимум 3 (в программе нет проверки на это)
 
     public static final char DOT_EMPTY = '•';
     public static final char DOT_HUMAN = 'X';
@@ -18,20 +18,18 @@ public class HomeWorkApp {
     public static void main(String[] args) {
         initMap();
         while (true) {
-            printMap();
+
             humanMove();
-            if (checkVin(DOT_HUMAN)) {
-                printMap();
+            if (checkWin(DOT_HUMAN)) {
                 System.out.println("Вы победили!");
                 break;
             }
             if (checkDrawn()) {
-                printMap();
                 System.out.println("Ничья!");
                 break;
             }
             aiMove();
-            if (checkVin(DOT_AI)) {
+            if (checkWin(DOT_AI)) {
                 printMap();
                 System.out.println("Вы проиграли!");
                 break;
@@ -40,22 +38,21 @@ public class HomeWorkApp {
     }
 
     public static void initMap() {
-        map = new char[SIZE][SIZE];
+        map = new char[SIZE][SIZE]; // создаем массив поля
         for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) map[i][j] = DOT_EMPTY;
+            for (int j = 0; j < SIZE; j++) map[i][j] = DOT_EMPTY; //заполняем массив
         }
     }
 
     public static void printMap() {
-        System.out.print("   ");
-        for (int i = 1; i < SIZE + 1; i++) System.out.print(i + "  ");
-        System.out.println();
-        int i = 1;
-        for (char[] line : map) {
-            System.out.print(i + "  ");
-            for (char point : line) System.out.print(point + "  ");
-            System.out.println();
-            i++;
+        System.out.print("   ");//выводим три пробела для выравнивания верхней строки.
+        for (int i = 1; i < SIZE + 1; i++) System.out.print(i + "  ");  //выводим верхнюю строку
+        System.out.println();   //перевод строки
+        for (int i = 0; i < SIZE; i++) {
+            System.out.print((i + 1) + "  "); // выводим начало строки
+            for (int j = 0; j < SIZE; j++)
+                System.out.print(map[i][j] + "  "); //выводим содержимое массива
+            System.out.println(); // перевод строки
         }
     }
 
@@ -68,22 +65,24 @@ public class HomeWorkApp {
             if (checkInput(x, y)) System.out.println("Ход не засчитан.");
         } while (checkInput(x, y));
         map[x][y] = DOT_HUMAN;
+        printMap();
     }
 
     private static void aiMove() {
-        int a, b;
+        int x, y;
         do {
-            a = rnd.nextInt(SIZE);
-            b = rnd.nextInt(SIZE);
-        } while (checkInput(a, b));
-        map[a][b] = DOT_AI;
+            x = rnd.nextInt(SIZE);
+            y = rnd.nextInt(SIZE);
+        } while (checkInput(x, y));
+        map[x][y] = DOT_AI;
+        printMap();
     }
 
     private static boolean checkInput(int x, int y) {
         return (x < 0) || (x >= SIZE) || (y < 0) || (y >= SIZE) || (map[x][y] != DOT_EMPTY);
     }
 
-    private static boolean checkVin(char point) {
+    private static boolean checkWin(char point) {
         int border = SIZE - SET;  // граница положения фреймов
         // перебираем фреймы на всей карте
         for (int i = 0; i <= border; i++) { //столбец карты
