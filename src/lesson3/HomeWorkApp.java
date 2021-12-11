@@ -1,6 +1,5 @@
 package lesson3;
 
-import javax.annotation.processing.SupportedSourceVersion;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -27,7 +26,7 @@ public class HomeWorkApp {
         System.out.println(Arrays.toString(arrayInt_2));
 
         //exercise three
-        int[] arrayInt_3 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        int[] arrayInt_3 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         for (int i = 0; i < arrayInt_3.length; i++) {
             arrayInt_3[i] *= (arrayInt_3[i] < 6) ? 2 : 1;
         }
@@ -49,7 +48,7 @@ public class HomeWorkApp {
         System.out.println(Arrays.toString(createAndFillArray(7, 71)));
 
         //exercise six
-        int[] arrayInt_6 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        int[] arrayInt_6 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
         int maxValue = arrayInt_6[0], minValue = arrayInt_6[0];
         for (int j : arrayInt_6) {
             maxValue = Math.max(j, maxValue);
@@ -59,9 +58,9 @@ public class HomeWorkApp {
         System.out.printf("min value is %d, max value is %d\n", minValue, maxValue);
 
         //exercise seven:
-        //int[] arrayInt_7 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1}; // false
-        int[] arrayInt_7 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 7}; // true
-        //int[] arrayInt_7 = new int[]{1, 5, 6}; // true
+        //int[] arrayInt_7 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1}; // false
+        int[] arrayInt_7 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 7}; // true
+        //int[] arrayInt_7 = {1, 5, 6}; // true
         System.out.println("exercise 7:");
         System.out.println(Arrays.toString(arrayInt_7));
 //        System.out.printf("Left part has %ssame right part\n", (findSameParts(arrayInt_7)) ? "" : "not ");
@@ -70,7 +69,7 @@ public class HomeWorkApp {
         System.out.println("same right part");
 
         //exercise eight
-        int[] arrayInt_8 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 7};
+        int[] arrayInt_8 = {1, 5, 3, 2, 11, 4, 5, 2, 4, 7};
         int shifting = 12; // - left, + right
         System.out.println("exercise 8:");
         System.out.println(Arrays.toString(arrayInt_8));
