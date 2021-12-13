@@ -19,6 +19,7 @@ public class HomeWorkApp {
     }
 
     static boolean checkNegative(int a) {                      // third exercise
+
         return a < 0;
     }
 
