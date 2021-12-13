@@ -8,18 +8,18 @@ public class HomeWorkApp {
         compareNumbers();
     }
 
-    private static void printThreeWords() {             // second exercise
+    static void printThreeWords() {             // second exercise
 
         System.out.println("Orange" + "\n" + "Banana" + '\n' + "Apple");
     }
 
-    private static void checkSumSign() {                // third exercise
+    static void checkSumSign() {                // third exercise
         int a = 12;
         int b = -57;
         System.out.println(((a + b) >= 0) ? "Сумма положительная" : "Сумма отрицательная");
     }
 
-    private static void printColor() {                  // fourth exercise
+    static void printColor() {                  // fourth exercise
         int value = 145;
         if (value <= 0) {
             System.out.println("Красный");
@@ -30,7 +30,7 @@ public class HomeWorkApp {
         }
     }
 
-    private static void compareNumbers() {              //fifth exercise
+    static void compareNumbers() {              //fifth exercise
         int a = 47;
         int b = 48;
         System.out.println((a >= b) ? "a >= b" : "a < b");
