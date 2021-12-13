@@ -7,27 +7,26 @@ public class HomeWorkApp {
         return ((a + b) >= 10) && ((a + b) <= 20);
     }
 
-    public static void checkPositive(int a) {                        // second exercise
-        String state = (a < 0) ? "negative" : "positive";
-        System.out.printf("Number %s is %s.\n", a, state);
+    static void checkPositive(int a) {                        // second exercise
+        System.out.printf("Number %s is %s.\n", a,
+                (a < 0) ? "negative" : "positive");
     }
 
-    public static boolean checkNegative(int a) {                      // third exercise
-
+    static boolean checkNegative(int a) {                      // third exercise
         return a < 0;
     }
 
-    public static void writeString(String str, int a) {               // fourth exercise
+    static void writeString(String str, int a) {               // fourth exercise
         for (int i = 0; i < a; i++) {
             System.out.println(str);
         }
     }
 
-    public static boolean isYearLeap(int year) {                       // fifth exercise
-
+    static boolean isYearLeap(int year) {                       // fifth exercise
         return (year % 4 == 0) && ((year % 100 > 0) || (year % 400 == 0));
     }
-    public static void main(String[] args) {
+
+    static void main(String[] args) {
 
 //        //checking result of exercise one
 //        int someNumber1 = 15, someNumber2 = 6;
