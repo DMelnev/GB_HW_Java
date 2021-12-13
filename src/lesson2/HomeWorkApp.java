@@ -1,3 +1,10 @@
+/**
+ * Java 1. Homework 2
+ *
+ * @author Melnev Dmitry
+ * @version created at 03.12.2021 corrected at 14.12.2021
+ *
+ */
 package lesson2;
 
 public class HomeWorkApp {
