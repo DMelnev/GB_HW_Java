@@ -3,13 +3,13 @@
  *
  * @author Melnev Dmitry
  * @version created at 03.12.2021 corrected at 14.12.2021
- *
  */
 package lesson2;
 
 public class HomeWorkApp {
 
     static boolean checkBetween10_20(int a, int b) {          // first exercise
+
         return ((a + b) >= 10) && ((a + b) <= 20);
     }
 
@@ -29,33 +29,33 @@ public class HomeWorkApp {
     }
 
     static boolean isYearLeap(int year) {                       // fifth exercise
+
         return (year % 4 == 0) && ((year % 100 > 0) || (year % 400 == 0));
     }
 
     public static void main(String[] args) {
 
         //checking result of exercise one
-        int someNumber1 = 15, someNumber2 = 6;
-        System.out.printf("%d is %s 10 and 20\n", (someNumber1 + someNumber2),
-                (checkBetween10_20(someNumber1, someNumber2)) ? "between" : "beyond");
-
-        //checking result of exercise two
-        someNumber1 = 5;
-        checkPositive(someNumber1);
-
-        //checking result of exercise three
-        someNumber1 = -5;
-        System.out.printf("Number %d is %s.\n", someNumber1,
-                (checkNegative(someNumber1)) ? "negative" : "positive");
+        int[][] nmbr = {{15, 6}, {-2, 4}, {0, 10}};
+        for (int[] pnt : nmbr) {
+            System.out.printf("%d is %s 10 and 20\n", (pnt[0] + pnt[1]),
+                    (checkBetween10_20(pnt[0], pnt[1]) ? "between" : "beyond"));
+            //checking result of exercise two
+            checkPositive(pnt[0]);
+            //checking result of exercise three
+            System.out.printf("Number %d is %s.\n", pnt[0],
+                    (checkNegative(pnt[0])) ? "negative" : "positive");
+        }
 
         //checking result of exercise four
-        someNumber1 = 3;
+        int someNumber1 = 3;
         String str = "Some String";
         writeString(str, someNumber1);
 
         //checking result of exercise five
-        int year = 2401;
-        System.out.printf("%d %s leap year.\n", year, (isYearLeap(year)) ? "is a" : "isn't a");
+        int[] tableYear = {2000, 2001, 2100, 2104};
+        for (int year : tableYear)
+            System.out.printf("%d is%s a leap year.\n", year, (isYearLeap(year)) ? "" : "n't");
     }
 
 }
