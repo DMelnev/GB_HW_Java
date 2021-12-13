@@ -36,16 +36,21 @@ public class HomeWorkApp {
 
     public static void main(String[] args) {
 
-        //checking result of exercise one
-        int[][] nmbr = {{15, 6}, {-2, 4}, {0, 10}};
-        for (int[] pnt : nmbr) {
+
+        int[][] array = {{15, 6}, {-2, 4}, {0, 10}};
+        for (int[] pnt : array) {
+
+            //checking result of exercise one
             System.out.printf("%d is %s 10 and 20\n", (pnt[0] + pnt[1]),
                     (checkBetween10_20(pnt[0], pnt[1]) ? "between" : "beyond"));
+
             //checking result of exercise two
             checkPositive(pnt[0]);
+
             //checking result of exercise three
             System.out.printf("Number %d is %s.\n", pnt[0],
                     (checkNegative(pnt[0])) ? "negative" : "positive");
+            System.out.println();
         }
 
         //checking result of exercise four
