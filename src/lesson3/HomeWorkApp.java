@@ -1,3 +1,10 @@
+/**
+ * Java 1. HomeWork 3
+ *
+ * @author Melnev Dmitry
+ * @version created 05.12.2021 corrected 15.12.2021
+ *
+ */
 package lesson3;
 
 import java.util.Arrays;
