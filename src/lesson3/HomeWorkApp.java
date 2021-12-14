@@ -6,7 +6,7 @@ import java.util.Random;
 public class HomeWorkApp {
     public static void main(String[] args) {
 
-        //exercise one
+        //exercise one_
         //prepare:
         Random rnd = new Random();
         int[] arrayInt = new int[10];
