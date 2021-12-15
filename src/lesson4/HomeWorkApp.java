@@ -4,18 +4,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HomeWorkApp {
-    public static char[][] map;
-    public static final int SIZE = 5; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это)
-    public static final int SET = 3;  // длина победной линии минимум 3 (в программе нет проверки на это)
+    static char[][] map;
+    static final int SIZE = 5; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это)
+    static final int SET = 3;  // длина победной линии минимум 3 (в программе нет проверки на это)
 
-    public static final char DOT_EMPTY = '•';
-    public static final char DOT_HUMAN = 'X';
-    public static final char DOT_AI = 'O';
+    static final char DOT_EMPTY = '•';
+    static final char DOT_HUMAN = 'X';
+    static final char DOT_AI = 'O';
 
-    private static final Scanner input = new Scanner(System.in); // IDEA подсказала, что нужно сделать final
-    private static final Random rnd = new Random();// IDEA подсказала, что нужно сделать final
+    static final Scanner input = new Scanner(System.in); // IDEA подсказала, что нужно сделать final
+    static final Random rnd = new Random();// IDEA подсказала, что нужно сделать final
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         initMap();
         while (true) {
 
@@ -37,14 +37,14 @@ public class HomeWorkApp {
         }
     }
 
-    public static void initMap() {
+    static void initMap() {
         map = new char[SIZE][SIZE]; // создаем массив поля
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) map[i][j] = DOT_EMPTY; //заполняем массив
         }
     }
 
-    public static void printMap() {
+    static void printMap() {
         System.out.print("   ");//выводим три пробела для выравнивания верхней строки.
         for (int i = 1; i < SIZE + 1; i++) System.out.print(i + "  ");  //выводим верхнюю строку
         System.out.println();   //перевод строки
@@ -56,7 +56,7 @@ public class HomeWorkApp {
         }
     }
 
-    public static void humanMove() {
+    static void humanMove() {
         int x, y;
         do {
             System.out.println("Введите координаты (X, Y):");
@@ -68,7 +68,7 @@ public class HomeWorkApp {
         printMap();
     }
 
-    private static void aiMove() {
+    static void aiMove() {
         int x, y;
         do {
             x = rnd.nextInt(SIZE);
@@ -78,11 +78,11 @@ public class HomeWorkApp {
         printMap();
     }
 
-    private static boolean checkInput(int x, int y) {
+    static boolean checkInput(int x, int y) {
         return (x < 0) || (x >= SIZE) || (y < 0) || (y >= SIZE) || (map[x][y] != DOT_EMPTY);
     }
 
-    private static boolean checkWin(char point) {
+    static boolean checkWin(char point) {
         int border = SIZE - SET;  // граница положения фреймов
         // перебираем фреймы на всей карте
         for (int i = 0; i <= border; i++) { //столбец карты
@@ -106,7 +106,7 @@ public class HomeWorkApp {
         return false;
     }
 
-    private static boolean checkDrawn() {
+    static boolean checkDrawn() {
         for (int x = 0; x < SIZE; x++) { //перебираю столбцы
             for (int y = 0; y < SIZE; y++) { //перебираю содержимое столбцов
                 if (map[x][y] == DOT_EMPTY) return false; //если встретил пусто
