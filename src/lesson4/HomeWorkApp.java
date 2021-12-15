@@ -11,12 +11,11 @@ public class HomeWorkApp {
     static final char DOT_HUMAN = 'X';
     static final char DOT_AI = 'O';
 
-    static final Scanner input = new Scanner(System.in); // IDEA подсказала, что нужно сделать final
-    static final Random rnd = new Random();// IDEA подсказала, что нужно сделать final
+    static Scanner input = new Scanner(System.in);
+    static Random rnd = new Random();
 
     public static void main(String[] args) {
         initMap();
-//        printMap();
         while (true) {
             printMap();
             humanMove();
