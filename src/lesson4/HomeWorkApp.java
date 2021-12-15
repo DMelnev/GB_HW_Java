@@ -7,7 +7,6 @@ public class HomeWorkApp {
     static char[][] map;
     static final int SIZE = 5; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это)
     static final int SET = 3;  // длина победной линии минимум 3 (в программе нет проверки на это)
-
     static final char DOT_EMPTY = '•';
     static final char DOT_HUMAN = 'X';
     static final char DOT_AI = 'O';
