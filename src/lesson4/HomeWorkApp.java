@@ -15,16 +15,19 @@ public class HomeWorkApp {
     static final Scanner input = new Scanner(System.in); // IDEA подсказала, что нужно сделать final
     static final Random rnd = new Random();// IDEA подсказала, что нужно сделать final
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         initMap();
+//        printMap();
         while (true) {
-
+            printMap();
             humanMove();
             if (checkWin(DOT_HUMAN)) {
+                printMap();
                 System.out.println("Вы победили!");
                 break;
             }
             if (checkDrawn()) {
+                printMap();
                 System.out.println("Ничья!");
                 break;
             }
@@ -65,7 +68,6 @@ public class HomeWorkApp {
             if (checkInput(x, y)) System.out.println("Ход не засчитан.");
         } while (checkInput(x, y));
         map[x][y] = DOT_HUMAN;
-        printMap();
     }
 
     static void aiMove() {
@@ -75,7 +77,6 @@ public class HomeWorkApp {
             y = rnd.nextInt(SIZE);
         } while (checkInput(x, y));
         map[x][y] = DOT_AI;
-        printMap();
     }
 
     static boolean checkInput(int x, int y) {
