@@ -31,7 +31,6 @@ public class HomeWorkApp {
         for (int[] line : createCrossArray(7))
             System.out.println(Arrays.toString(line));
 
-        //exercise five:
         System.out.println("\nexercise 5:");
         System.out.println(Arrays.toString(createAndFillArray(7, 71)));
 
@@ -57,7 +56,7 @@ public class HomeWorkApp {
         for (int i : shifts) {
             System.out.print("shift = " + i + " - ");
             System.out.println(Arrays.toString(arrayShift(arrayInt_8.clone(), i)));
-            //передаю в метод копию массива, а не указатель, что бы не изменить оригинал
+            //передаю в метод копию массива, а не ссылку, что бы не изменить оригинал
         }
     }
 
