@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class HomeWorkApp {
     static char[][] map;
-    static final int SIZE = 5; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это)
+    static final int SIZE = 10; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это) и не более 99
     static final int SET = 4;  // длина победной линии минимум 3 (в программе нет проверки на это)
     static final char DOT_EMPTY = '•';
     static final char DOT_HUMAN = 'X';
@@ -51,10 +51,13 @@ public class HomeWorkApp {
 
     static void printMap() {
         System.out.print("   ");//выводим три пробела для выравнивания верхней строки.
-        for (int i = 1; i < SIZE + 1; i++) System.out.print(i + "  ");  //выводим верхнюю строку
+        for (int i = 1; i < SIZE + 1; i++) {
+            System.out.printf("%d %s", i, (i < 10) ? " " : "");  //выводим верхнюю строку
+        }
         System.out.println();
         for (int i = 0; i < SIZE; i++) {
-            System.out.print((i + 1) + "  "); // выводим начало строки
+            System.out.printf("%d%s ", (i + 1), (i < 9) ? " " : "");
+//            System.out.print((i + 1) + "  "); // выводим начало строки
             for (int j = 0; j < SIZE; j++)
                 System.out.print(map[i][j] + "  "); //выводим содержимое массива
             System.out.println(); // перевод строки
@@ -136,10 +139,10 @@ public class HomeWorkApp {
                                 if (checkFrame(i + x, j + y, frame, 'A')) return;
                             }
                             if (countB >= frame) {
-                                if(checkFrame(i + x, j + y, frame, 'B'))return;
+                                if (checkFrame(i + x, j + y, frame, 'B')) return;
                             }
                             if (countX >= frame) {
-                                if(checkFrame(i + x, j + y, frame, 'X'))return;
+                                if (checkFrame(i + x, j + y, frame, 'X')) return;
                             }
                             if (countY >= frame) {
                                 if (checkFrame(i + x, j + y, frame, 'Y')) return;
@@ -159,37 +162,61 @@ public class HomeWorkApp {
 //        System.out.println("y = " + yFrame);
 //        System.out.println();
         switch (type) {
-            case ('X'):
-                if ((yFrame < SIZE - 1) && (map[yFrame + 1][xFrame] == DOT_EMPTY)) {
+            case ('X'): // вертикальная линия
+                if ((yFrame < SIZE - 1) && (map[yFrame + 1][xFrame] == DOT_EMPTY)) { // под линией
                     aiX = yFrame + 1;
                     aiY = xFrame;
                     System.out.println("set X down");
                     return true;
                 }
-                if ((yFrame - frame > 0) && (map[yFrame - frame - 1][xFrame] == DOT_EMPTY)) {
-                    aiX = yFrame - frame - 1;
+                if ((yFrame - frame > 0) && (map[yFrame - frame][xFrame] == DOT_EMPTY)) { // над линией
+                    aiX = yFrame - frame;
                     aiY = xFrame;
                     System.out.println("set X up");
                     return true;
                 }
                 break;
-            case ('Y'):
-                if ((xFrame < SIZE - 1) && (map[xFrame + 1][yFrame] == DOT_EMPTY)) {
-                    aiX = xFrame + 1;
-                    aiY = yFrame;
+            case ('Y'): // горизонтальная линия
+                if ((yFrame < SIZE - 1) && (map[xFrame][yFrame + 1] == DOT_EMPTY)) { // справа от линии
+                    aiX = xFrame;
+                    aiY = yFrame + 1;
                     System.out.println("set Y down");
                     return true;
                 }
-                if ((xFrame - frame > 0) && (map[xFrame - frame - 1][yFrame] == DOT_EMPTY)) {
-                    aiX = xFrame - frame - 1;
-                    aiY = yFrame;
+                if ((yFrame - frame > 0) && (map[xFrame][yFrame - frame] == DOT_EMPTY)) { // слева от линии
+                    aiX = xFrame;
+                    aiY = yFrame - frame;
                     System.out.println("set Y up");
                     return true;
                 }
                 break;
             case ('A'):
+                if ((yFrame < SIZE - 1) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame + 1] == DOT_EMPTY)) { // справа от линии
+                    aiX = xFrame + 1;
+                    aiY = yFrame + 1;
+                    System.out.println("set A down");
+                    return true;
+                }
+                if ((yFrame - frame > 0) && (xFrame - frame > 0) && (map[xFrame - frame][yFrame - frame] == DOT_EMPTY)) { // слева от линии
+                    aiX = xFrame - frame;
+                    aiY = yFrame - frame;
+                    System.out.println("set A up");
+                    return true;
+                }
                 break;
             case ('B'):
+                if ((yFrame > 0) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame - 1] == DOT_EMPTY)) { // слева от вспом диагонали
+                    aiX = xFrame + 1;
+                    aiY = yFrame - 1;
+                    System.out.println("set B down");
+                    return true;
+                }
+                if ((yFrame + frame < SIZE) && (xFrame - frame > 0) && (map[xFrame - frame][yFrame + frame-1] == DOT_EMPTY)) { // слева от линии
+                    aiX = xFrame - frame;
+                    aiY = yFrame - frame;
+                    System.out.println("set B up");
+                    return true;
+                }
                 break;
             default:
                 break;
