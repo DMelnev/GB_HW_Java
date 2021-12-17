@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class HomeWorkApp {
     char[][] map;
-    int size; //размер поля
-    int set;  // длина победной линии
+    int size; //настраиваемый размер поля
+    int set;  //настраиваемый  длина победной линии
     final char DOT_EMPTY = '•';
     final char DOT_HUMAN = 'X';
     final char DOT_AI = 'O';
