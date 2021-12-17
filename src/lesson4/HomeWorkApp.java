@@ -97,7 +97,7 @@ public class HomeWorkApp {
         int x, y;
         do {
             System.out.print("Введите координаты (X, Y):"); //к сожалению я попутал x и y потому тут не совсем как нужно ((
-                                            //так как сначала начал писать, а потом посмотрел видео и поправил
+            //так как сначала начал писать, а потом посмотрел видео и поправил
             y = input.nextInt() - 1;
             x = input.nextInt() - 1;
             if (checkInput(x, y)) System.out.println("Ход не засчитан.");
@@ -184,7 +184,6 @@ public class HomeWorkApp {
 
     void blockHuman() {
         for (int frame = set; frame > 1; frame--) { //перебираем размеры фреймов
-//            System.out.println("frame = " + frame);
             if (checkWinAndBlock(DOT_HUMAN, frame, false)) return;
         }
     }
@@ -193,102 +192,82 @@ public class HomeWorkApp {
 
         switch (type) {
             case ('X'): // вертикальная линия
-//                System.out.println("set X " + frame);
                 if ((yFrame < size - 1) && (map[yFrame + 1][xFrame] == DOT_EMPTY)) { // под линией
                     aiX = yFrame + 1;
                     aiY = xFrame;
-//                    System.out.println("set X down");
                     return true;
                 }
                 if ((yFrame - frame >= 0) && (map[yFrame - frame][xFrame] == DOT_EMPTY)) { // над линией
                     aiX = yFrame - frame;
                     aiY = xFrame;
-//                    System.out.println("set X up");
                     return true;
                 }
                 break;
             case ('Y'): // горизонтальная линия
-//                System.out.println("set Y " + frame);
                 if ((yFrame < size - 1) && (map[xFrame][yFrame + 1] == DOT_EMPTY)) { // справа от линии
                     aiX = xFrame;
                     aiY = yFrame + 1;
-//                    System.out.println("set Y right");
                     return true;
                 }
                 if ((yFrame - frame >= 0) && (map[xFrame][yFrame - frame] == DOT_EMPTY)) { // слева от линии
                     aiX = xFrame;
                     aiY = yFrame - frame;
-//                    System.out.println("set Y left");
                     return true;
                 }
                 break;
             case ('A')://главная диагональ
-//                System.out.println("set A " + frame);
                 if ((yFrame < size - 1) && (xFrame < size - 1)
                         && (map[xFrame + 1][yFrame + 1] == DOT_EMPTY)) { // справа от диагонали
                     aiX = xFrame + 1;
                     aiY = yFrame + 1;
-//                    System.out.println("set A down");
                     return true;
                 }
                 if ((yFrame - frame >= 0) && (xFrame - frame >= 0)
                         && (map[xFrame - frame][yFrame - frame] == DOT_EMPTY)) { // слева от диагонали
                     aiX = xFrame - frame;
                     aiY = yFrame - frame;
-//                    System.out.println("set A up");
                     return true;
                 }
                 break;
             case ('B')://вспомогательная диагональ
-//                System.out.println("set B " + frame + " x=" + xFrame + " y=" + yFrame);
-                if ((yFrame > 0) && (xFrame + 1 < size )
+                if ((yFrame > 0) && (xFrame + 1 < size)
                         && (map[xFrame + 1][yFrame - 1] == DOT_EMPTY)) { // слева от вспом диагонали
                     aiX = xFrame + 1;
                     aiY = yFrame - 1;
-//                    System.out.println("set B down");
                     return true;
                 }
                 if ((yFrame + frame <= size) && (xFrame - frame >= 0)
                         && (map[xFrame - frame][yFrame + frame] == DOT_EMPTY)) { // справа от вспом диагонали
                     aiX = xFrame - frame;
                     aiY = yFrame + frame;
-//                    System.out.println("set B up");
                     return true;
                 }
                 break;
             case ('C')://между точками вертикально
-//                System.out.println("set С x=" + xFrame + " =" + yFrame);
                 if (map[yFrame - 1][xFrame] == DOT_EMPTY) {
                     aiX = yFrame - 1;
                     aiY = xFrame;
-//                    System.out.println("set С between");
                     return true;
                 }
                 break;
             case ('D')://между точками горизонтально
-//                System.out.println("set D  x=" + xFrame + " =" + yFrame);
                 if (map[xFrame][yFrame - 1] == DOT_EMPTY) { // справа от линии
                     aiX = xFrame;
                     aiY = yFrame - 1;
-//                    System.out.println("set D between");
                     return true;
                 }
                 break;
             case ('E')://между точек главная диагональ
-//                System.out.println("set E  x=" + xFrame + " =" + yFrame);
                 if (map[xFrame - 1][yFrame - 1] == DOT_EMPTY) { // центр диагонали
                     aiX = xFrame - 1;
                     aiY = yFrame - 1;
-//                    System.out.println("set E between");
                     return true;
                 }
                 break;
             case ('F')://между точек вспомогательная диагональ
-//                System.out.println("set F  x=" + xFrame + " =" + yFrame);
                 if (map[xFrame - 1][yFrame + 1] == DOT_EMPTY) { // центр вспом диагонали
                     aiX = xFrame - 1;
                     aiY = yFrame + 1;
-//                    System.out.println("set F between");
                     return true;
                 }
                 break;
