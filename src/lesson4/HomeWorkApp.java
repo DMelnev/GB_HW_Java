@@ -169,7 +169,7 @@ public class HomeWorkApp {
                     System.out.println("set X down");
                     return true;
                 }
-                if ((yFrame - frame > 0) && (map[yFrame - frame][xFrame] == DOT_EMPTY)) { // над линией
+                if ((yFrame - frame >= 0) && (map[yFrame - frame][xFrame] == DOT_EMPTY)) { // над линией
                     aiX = yFrame - frame;
                     aiY = xFrame;
                     System.out.println("set X up");
@@ -183,7 +183,7 @@ public class HomeWorkApp {
                     System.out.println("set Y down");
                     return true;
                 }
-                if ((yFrame - frame > 0) && (map[xFrame][yFrame - frame] == DOT_EMPTY)) { // слева от линии
+                if ((yFrame - frame >= 0) && (map[xFrame][yFrame - frame] == DOT_EMPTY)) { // слева от линии
                     aiX = xFrame;
                     aiY = yFrame - frame;
                     System.out.println("set Y up");
@@ -191,13 +191,13 @@ public class HomeWorkApp {
                 }
                 break;
             case ('A'):
-                if ((yFrame < SIZE - 1) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame + 1] == DOT_EMPTY)) { // справа от линии
+                if ((yFrame < SIZE - 1) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame + 1] == DOT_EMPTY)) { // справа от диагонали
                     aiX = xFrame + 1;
                     aiY = yFrame + 1;
                     System.out.println("set A down");
                     return true;
                 }
-                if ((yFrame - frame > 0) && (xFrame - frame > 0) && (map[xFrame - frame][yFrame - frame] == DOT_EMPTY)) { // слева от линии
+                if ((yFrame - frame >= 0) && (xFrame - frame >= 0) && (map[xFrame - frame][yFrame - frame] == DOT_EMPTY)) { // слева от диагонали
                     aiX = xFrame - frame;
                     aiY = yFrame - frame;
                     System.out.println("set A up");
@@ -205,20 +205,22 @@ public class HomeWorkApp {
                 }
                 break;
             case ('B'):
-                if ((yFrame > 0) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame - 1] == DOT_EMPTY)) { // слева от вспом диагонали
+                System.out.println("set B");
+                if ((yFrame > 0) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame - 2] == DOT_EMPTY)) { // слева от вспом диагонали
                     aiX = xFrame + 1;
-                    aiY = yFrame - 1;
+                    aiY = yFrame - 2;
                     System.out.println("set B down");
                     return true;
                 }
-                if ((yFrame + frame < SIZE) && (xFrame - frame > 0) && (map[xFrame - frame][yFrame + frame-1] == DOT_EMPTY)) { // слева от линии
+                if ((yFrame + frame <= SIZE) && (xFrame - frame >= 0) && (map[xFrame - frame][yFrame + frame - 1] == DOT_EMPTY)) { // справа от вспом диагонали
                     aiX = xFrame - frame;
-                    aiY = yFrame - frame;
+                    aiY = yFrame + frame - 1;
                     System.out.println("set B up");
                     return true;
                 }
                 break;
             default:
+                // что то должны сделать... пока не придумал ))
                 break;
         }
         return false;
