@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class HomeWorkApp {
     static char[][] map;
     static final int SIZE = 10; // размер поля, минимум 3 и равно или более SET (в программе нет проверки на это) и не более 99
-    static final int SET = 4;  // длина победной линии минимум 3 (в программе нет проверки на это)
+    static final int SET = 5;  // длина победной линии минимум 3 (в программе нет проверки на это)
     static final char DOT_EMPTY = '•';
     static final char DOT_HUMAN = 'X';
     static final char DOT_AI = 'O';
