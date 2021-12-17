@@ -77,7 +77,7 @@ public class HomeWorkApp {
             aiX = rnd.nextInt(SIZE);
             aiY = rnd.nextInt(SIZE);
         } while (checkInput(aiX, aiY));
-        blockUser();
+        blockHuman();
         map[aiX][aiY] = DOT_AI;
     }
 
@@ -116,8 +116,8 @@ public class HomeWorkApp {
         return true; // ничего не нашли, ничья.
     }
 
-    static void blockUser() {
-        for (int frame = SET - 1; frame > 0; frame--) { //пеебираем размеры фреймов
+    static void blockHuman() {
+        for (int frame = SET - 1; frame > 1; frame--) { //пеебираем размеры фреймов
             for (int i = 0; i <= SIZE - frame; i++) { //строка карты
                 for (int j = 0; j <= SIZE - frame; j++) { // столбец карты
                     // перебираем внутри фрейма
@@ -125,23 +125,24 @@ public class HomeWorkApp {
                     for (int x = 0; x < frame; x++) { //столбец фрейма
                         int countY = 0, countX = 0; //инициализация счетчиков по строкам
                         for (int y = 0; y < frame; y++) { //строка фрейма
-                            if (map[x + i][y + j] == DOT_AI) countY++;               //проверяем горизонтали
-                            if (map[y + j][x + i] == DOT_AI) countX++;               //проверяем вертикали
+                            if (map[x + i][y + j] == DOT_HUMAN) countY++;               //проверяем горизонтали
+                            if (map[y + j][x + i] == DOT_HUMAN) countX++;               //проверяем вертикали
                             if (x == y) {                                           //если диагональ
-                                if (map[x + i][y + j] == DOT_AI) countA++;           //проверяем главную диагональ фрейма
-                                if (map[x + i][frame - y - 1 + j] == DOT_AI) countB++; //проверяем доп. диагональ
+                                if (map[x + i][y + j] == DOT_HUMAN)
+                                    countA++;           //проверяем главную диагональ фрейма
+                                if (map[x + i][frame - y - 1 + j] == DOT_HUMAN) countB++; //проверяем доп. диагональ
                             }
-                            if (countA >= frame){
-
+                            if (countA >= frame) {
+                                if (checkFrame(i + x, j + y, frame, 'A')) return;
                             }
-                            if (countB >= frame){
-
+                            if (countB >= frame) {
+                                if(checkFrame(i + x, j + y, frame, 'B'))return;
                             }
-                            if (countX >= frame){
-                                if (checkFrame(i,j,frame,'X')) return;
+                            if (countX >= frame) {
+                                if(checkFrame(i + x, j + y, frame, 'X'))return;
                             }
-                            if (countY >= frame){
-
+                            if (countY >= frame) {
+                                if (checkFrame(i + x, j + y, frame, 'Y')) return;
                             }
 
                         }
@@ -150,18 +151,41 @@ public class HomeWorkApp {
             }
         }
     }
-    static boolean checkFrame(int xFrame, int yFrame, int frame, char type){
-        switch (type){
+
+    static boolean checkFrame(int xFrame, int yFrame, int frame, char type) {
+//        System.out.println("type = " + type);
+//        System.out.println("frame = " + frame);
+//        System.out.println("x = " + xFrame);
+//        System.out.println("y = " + yFrame);
+//        System.out.println();
+        switch (type) {
             case ('X'):
-                System.out.println("type = " + type);
-                System.out.println("frame = " + frame);
-                System.out.println("x = " + xFrame);
-                System.out.println("y = " + yFrame);
-                System.out.println();
-
-
+                if ((yFrame < SIZE - 1) && (map[yFrame + 1][xFrame] == DOT_EMPTY)) {
+                    aiX = yFrame + 1;
+                    aiY = xFrame;
+                    System.out.println("set X down");
+                    return true;
+                }
+                if ((yFrame - frame > 0) && (map[yFrame - frame - 1][xFrame] == DOT_EMPTY)) {
+                    aiX = yFrame - frame - 1;
+                    aiY = xFrame;
+                    System.out.println("set X up");
+                    return true;
+                }
                 break;
             case ('Y'):
+                if ((xFrame < SIZE - 1) && (map[xFrame + 1][yFrame] == DOT_EMPTY)) {
+                    aiX = xFrame + 1;
+                    aiY = yFrame;
+                    System.out.println("set Y down");
+                    return true;
+                }
+                if ((xFrame - frame > 0) && (map[xFrame - frame - 1][yFrame] == DOT_EMPTY)) {
+                    aiX = xFrame - frame - 1;
+                    aiY = yFrame;
+                    System.out.println("set Y up");
+                    return true;
+                }
                 break;
             case ('A'):
                 break;
