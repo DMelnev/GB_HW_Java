@@ -1,6 +1,5 @@
 package lesson4;
 
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -88,28 +87,47 @@ public class HomeWorkApp {
         return (x < 0) || (x >= SIZE) || (y < 0) || (y >= SIZE) || (map[x][y] != DOT_EMPTY);
     }
 
-    static boolean checkWin(char point) {
-        int border = SIZE - SET;  // граница положения фреймов
+    static boolean checkWin(char point, int frame, boolean isWin) {
+        int border = SIZE - frame;  // граница положения фреймов
         // перебираем фреймы на всей карте
         for (int i = 0; i <= border; i++) { //столбец карты
             for (int j = 0; j <= border; j++) { //строка карты
                 // перебираем внутри фрейма
                 int countA = 0, countB = 0; //инициализация счетчиков по диагоналям
-                for (int x = 0; x < SET; x++) { //столбец фрейма
+                for (int x = 0; x < frame; x++) { //столбец фрейма
                     int countY = 0, countX = 0; //инициализация счетчиков по строкам
-                    for (int y = 0; y < SET; y++) { //строка фрейма
+                    for (int y = 0; y < frame; y++) { //строка фрейма
                         if (map[x + i][y + j] == point) countY++;               //проверяем горизонтали
                         if (map[y + j][x + i] == point) countX++;               //проверяем вертикали
                         if (x == y) {                                           //если диагональ
                             if (map[x + i][y + j] == point) countA++;           //проверяем главную диагональ фрейма
-                            if (map[x + i][SET - y - 1 + j] == point) countB++; //проверяем доп. диагональ
+                            if (map[x + i][frame - y - 1 + j] == point) countB++; //проверяем доп. диагональ
                         }
-                        if (countA >= SET || countB >= SET || countX >= SET || countY >= SET) return true;//если нашли
+                        if (isWin) {    // если проверяем победу
+
+                            if (countA >= SET || countB >= SET || countX >= SET || countY >= SET)
+                                return true;//если нашли
+                        } else {     // если проверяем блокировку
+
+                            if ((countA >= frame) &&
+                                    (checkFrame(i + x, j + y, frame, 'A'))) return true;
+                            if ((countB >= frame) &&
+                                    (checkFrame(i + x, j + y, frame, 'B'))) return true;
+                            if ((countX >= frame) &&
+                                    (checkFrame(i + x, j + y, frame, 'X'))) return true;
+                            if ((countY >= frame) &&
+                                    (checkFrame(i + x, j + y, frame, 'Y'))) return true;
+                        }
                     }
                 }
             }
         }
         return false;
+    }
+
+    static boolean checkWin(char point) { // перегружаем со значением по умолчанию
+
+        return checkWin(point, SET,false);
     }
 
     static boolean checkDrawn() {
@@ -121,6 +139,7 @@ public class HomeWorkApp {
 
     static void blockHuman() {
         for (int frame = SET - 1; frame > 1; frame--) { //пеебираем размеры фреймов
+            checkWin(DOT_HUMAN);
             for (int i = 0; i <= SIZE - frame; i++) { //строка карты
                 for (int j = 0; j <= SIZE - frame; j++) { // столбец карты
                     // перебираем внутри фрейма
@@ -156,13 +175,10 @@ public class HomeWorkApp {
     }
 
     static boolean checkFrame(int xFrame, int yFrame, int frame, char type) {
-//        System.out.println("type = " + type);
-//        System.out.println("frame = " + frame);
-//        System.out.println("x = " + xFrame);
-//        System.out.println("y = " + yFrame);
-//        System.out.println();
+
         switch (type) {
             case ('X'): // вертикальная линия
+                System.out.println("set X");
                 if ((yFrame < SIZE - 1) && (map[yFrame + 1][xFrame] == DOT_EMPTY)) { // под линией
                     aiX = yFrame + 1;
                     aiY = xFrame;
@@ -177,6 +193,7 @@ public class HomeWorkApp {
                 }
                 break;
             case ('Y'): // горизонтальная линия
+                System.out.println("set Y");
                 if ((yFrame < SIZE - 1) && (map[xFrame][yFrame + 1] == DOT_EMPTY)) { // справа от линии
                     aiX = xFrame;
                     aiY = yFrame + 1;
@@ -190,7 +207,8 @@ public class HomeWorkApp {
                     return true;
                 }
                 break;
-            case ('A'):
+            case ('A')://главная диагональ
+                System.out.println("set A");
                 if ((yFrame < SIZE - 1) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame + 1] == DOT_EMPTY)) { // справа от диагонали
                     aiX = xFrame + 1;
                     aiY = yFrame + 1;
@@ -204,7 +222,7 @@ public class HomeWorkApp {
                     return true;
                 }
                 break;
-            case ('B'):
+            case ('B')://вспомогательная диагональ
                 System.out.println("set B");
                 if ((yFrame > 0) && (xFrame < SIZE - 1) && (map[xFrame + 1][yFrame - 2] == DOT_EMPTY)) { // слева от вспом диагонали
                     aiX = xFrame + 1;
