@@ -1,4 +1,5 @@
 /**
+ * Java 1/ Lesson 5
  * Class determinate for object employee
  *
  * @author Melnev Dmitry
