@@ -6,8 +6,6 @@
  */
 package lesson5;
 
-import java.util.Calendar;
-
 public class Employee {
     private String fullName;
     private String position;
