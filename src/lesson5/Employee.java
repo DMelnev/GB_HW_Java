@@ -15,6 +15,7 @@ public class Employee {
     private double salary;
     private int age;
     private int yearOfBirth;
+
     static int currentYear = 0;
 
 
@@ -47,10 +48,12 @@ public class Employee {
     }
 
     void setFullName(String name) {
+        name = name.replaceAll("[^a-zA-Zа-яА-ЯёЁ ]", "");
         fullName = name;
     }
 
     void setAge(int age) {
+
         this.age = age;
         yearOfBirth = (currentYear > 0) ? currentYear - this.age : 0;
     }

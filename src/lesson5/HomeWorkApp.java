@@ -38,6 +38,9 @@ public class HomeWorkApp {
                 System.out.println();
             }
         }
+        String newName = "Сафон1 СафЁёонов";
+        personArr[0].setFullName(newName);
+        personArr[0].printInfo();
 
     }
 }
