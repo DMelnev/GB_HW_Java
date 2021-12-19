@@ -30,11 +30,13 @@ public class HomeWorkApp {
         personArr[3] = new Employee("Dmitriy Dmitryev",
                 "accountant", "fgh@asd.ru", "+7900 900 00 03", 100000.0, 52);
         personArr[4] = new Employee("Alexandr Alexandrov",
-                "engineer", "rty@asd.ru", "+7900 900 00 04", 25000.0, 35);
+                "engineer", "rty@asd.ru", "+7900 900 00 04", 25000.0, 41);
 
-        for (Employee prsn : personArr){
-            prsn.printInfo();
-            System.out.println();
+        for (Employee prsn : personArr) {
+            if (prsn.getAge() > 40) {
+                prsn.printInfo();
+                System.out.println();
+            }
         }
 
     }

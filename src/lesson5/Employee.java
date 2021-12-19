@@ -34,26 +34,66 @@ public class Employee {
         System.out.printf("Employer name: %s,\nyear of birth: %d, age: %d\n" +
                         "phone number: %s,\nemail: %s\n" +
                         "position: %s,\nsalary: %,.2f\n",
-                fullName, yearOfBirth, age,
-                phone, email,
-                position, salary);
+                fullName,
+                yearOfBirth,
+                age,
+                phone,
+                email,
+                position,
+                salary);
     }
 
     static void setCurrentYear(int year) {
         currentYear = year;
     }
-    void setFullName(String name){
+
+    void setFullName(String name) {
         fullName = name;
     }
-    void setAge(int age){
+
+    void setAge(int age) {
         this.age = age;
         yearOfBirth = (currentYear > 0) ? currentYear - this.age : 0;
     }
-    void setPosition(String position){
+
+    void setPosition(String position) {
         this.position = position;
     }
-    void setEmail(String email){
 
+    void setEmail(String email) {
+        this.email = email;
+    }
+
+    void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    String getFullName() {
+        return fullName;
+    }
+
+    String getPosition() {
+        return position;
+    }
+
+    String getEmail() {
+        return email;
+    }
+
+    String getPhone() {
+        return phone;
+    }
+
+    int getAge() {
+        return age;
+    }
+
+    double getSalary() {
+        return salary;
     }
 
     int getYearOfBirth() {
