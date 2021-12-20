@@ -34,13 +34,14 @@ public class HomeWorkApp {
 
         for (Employee prsn : personArr) {
             if (prsn.getAge() > 40) {
-                prsn.printInfo();
-                System.out.println();
+                System.out.println(prsn);
             }
         }
-        String newName = "Сафон1 СафЁёонов";
-        personArr[0].setFullName(newName);
-        personArr[0].printInfo();
+//        String newName = "Сафон1 СафЁёонов";
+//        personArr[0].setFullName(newName);
+//        personArr[0].printInfo();
+        System.out.println();
+
 
     }
 }
