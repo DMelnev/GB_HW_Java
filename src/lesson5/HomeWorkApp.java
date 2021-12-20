@@ -20,19 +20,19 @@ public class HomeWorkApp {
 
         Employee.setCurrentYear(date.get(Calendar.YEAR)); //в статическое поле пишем текущий год
 
-        Employee[] personArr = new Employee[5];
-        personArr[0] = new Employee("Ivan Ivanov",
+        Employee[] employees = new Employee[5];
+        employees[0] = new Employee("Ivan Ivanov",
                 "director", "asd@asd.ru", "+7900 900 00 00", 150000.0, 48);
-        personArr[1] = new Employee("Petr Petrov",
+        employees[1] = new Employee("Petr Petrov",
                 "manager", "qwe@asd.ru", "+7900 900 00 01", 130000.0, 32);
-        personArr[2] = new Employee("Sidor Sidorov",
+        employees[2] = new Employee("Sidor Sidorov",
                 "lawer", "zxc@asd.ru", "+7900 900 00 02", 120000.0, 41);
-        personArr[3] = new Employee("Dmitriy Dmitryev",
+        employees[3] = new Employee("Dmitriy Dmitryev",
                 "accountant", "fgh@asd.ru", "+7900 900 00 03", 100000.0, 52);
-        personArr[4] = new Employee("Alexandr Alexandrov",
+        employees[4] = new Employee("Alexandr Alexandrov",
                 "engineer", "rty@asd.ru", "+7900 900 00 04", 25000.0, 41);
 
-        for (Employee prsn : personArr) {
+        for (Employee prsn : employees) {
             if (prsn.getAge() > 40) {
                 System.out.println(prsn);
             }
