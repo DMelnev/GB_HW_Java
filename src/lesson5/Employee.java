@@ -3,11 +3,9 @@
  * Class determinate for object employee
  *
  * @author Melnev Dmitry
- * @version 2021-12-
+ * @version 2021-12-20
  */
 package lesson5;
-
-import java.util.Objects;
 
 public class Employee {
     private String fullName;
@@ -29,7 +27,7 @@ public class Employee {
         this.salary = salary;
         this.age = age;
 
-        yearOfBirth = (currentYear > 0) ? currentYear - this.age : 0;
+        yearOfBirth = (currentYear > 0) ? currentYear - age : 0;
     }
 
     @Override
@@ -49,50 +47,40 @@ public class Employee {
                 salary);
     }
 
-
-//        System.out.printf("Employer name: %s,\nyear of birth: %d, age: %d\n" +
-//                        "phone number: %s,\nemail: %s\n" +
-//                        "position: %s,\nsalary: %,.2f\n",
-//                fullName,
-//                yearOfBirth,
-//                age,
-//                phone,
-//                email,
-//                position,
-//                salary);
-//    }
-
-    static void setCurrentYear(int year) {
+    public static void setCurrentYear(int year) {
         currentYear = year;
     }
 
     public void setFullName(String fullName) {
-        if (fullName.equals(fullName.replaceAll("[^a-zA-Zа-яА-ЯёЁ ]", ""))){
+        if (fullName.equals(fullName.replaceAll("[^a-zA-Zа-яА-ЯёЁ ]", "")))
             this.fullName = fullName;
-        };
-
     }
 
     public void setAge(int age) {
-
-        this.age = age;
-        yearOfBirth = (currentYear > 0) ? currentYear - this.age : 0;
+        if (age >= 18 && age <= 99) {
+            this.age = age;
+            yearOfBirth = (currentYear > 0) ? currentYear - age : 0;
+        }
     }
 
     public void setPosition(String position) {
-        this.position = position;
+        if (position.equals(position.replaceAll("[^a-zA-Zа-яА-ЯёЁ -]", "")))
+            this.position = position;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email.equals(email.replaceAll("[^a-z0-9_.\\-@]", ""))) //примитивно ((
+            this.email = email;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if (phone.equals(phone.replaceAll("[^0-9-()+ ]", "")))
+            this.phone = phone;
     }
 
     public void setSalary(int salary) {
-        this.salary = salary;
+        if (salary > 0.0 && salary <= 1000000.0)
+            this.salary = salary;
     }
 
     public String getFullName() {

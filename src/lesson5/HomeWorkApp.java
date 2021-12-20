@@ -2,7 +2,7 @@
  * Java 1/ Lesson 5
  *
  * @author Melnev Dmitry
- * @version 2021-12-
+ * @version 2021-12-20
  */
 package lesson5;
 
@@ -18,7 +18,7 @@ public class HomeWorkApp {
 
     void run() {
 
-        Employee.setCurrentYear(date.get(Calendar.YEAR));
+        Employee.setCurrentYear(date.get(Calendar.YEAR)); //в статическое поле пишем текущий год
 
         Employee[] personArr = new Employee[5];
         personArr[0] = new Employee("Ivan Ivanov",
@@ -37,11 +37,5 @@ public class HomeWorkApp {
                 System.out.println(prsn);
             }
         }
-//        String newName = "Сафон1 СафЁёонов";
-//        personArr[0].setFullName(newName);
-//        personArr[0].printInfo();
-        System.out.println();
-
-
     }
 }
