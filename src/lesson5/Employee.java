@@ -14,7 +14,7 @@ public class Employee {
     private String phone;
     private double salary;
     private int age;
-    private int yearOfBirth;
+    private int yearOfBirth; //сверх задания, просто хотел испытать статический метод и поле
 
     private static int currentYear = 0;
 
@@ -48,11 +48,12 @@ public class Employee {
     }
 
     public static void setCurrentYear(int year) {
-        currentYear = year;
+        if (year > 1900 && year < 2100)
+            currentYear = year;
     }
 
     public void setFullName(String fullName) {
-        if (fullName.equals(fullName.replaceAll("[^a-zA-Zа-яА-ЯёЁ ]", "")))
+        if (fullName.equals(fullName.replaceAll("[^a-zA-Zа-яА-ЯёЁ ]", "")))//тест работы с регулярными выражениями.
             this.fullName = fullName;
     }
 
@@ -69,7 +70,7 @@ public class Employee {
     }
 
     public void setEmail(String email) {
-        if (email.equals(email.replaceAll("[^a-z0-9_.\\-@]", ""))) //примитивно ((
+        if (email.equals(email.replaceAll("[^a-z0-9_.\\-@]", ""))) //должно быть иначе, но пока так.
             this.email = email;
     }
 
@@ -79,7 +80,7 @@ public class Employee {
     }
 
     public void setSalary(int salary) {
-        if (salary > 0.0 && salary <= 1000000.0)
+        if (salary >= 0.0 && salary <= 1000000.0)
             this.salary = salary;
     }
 
@@ -99,7 +100,7 @@ public class Employee {
         return phone;
     }
 
-    int getAge() {
+    public int getAge() {
         return age;
     }
 
