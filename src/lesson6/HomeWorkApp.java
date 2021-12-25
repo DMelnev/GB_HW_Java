@@ -1,8 +1,6 @@
 /**
- *
  * @author Melnev Dmitry
  * @version 2021-12-25
- *
  */
 package lesson6;
 
@@ -11,6 +9,7 @@ import java.util.Random;
 public class HomeWorkApp {
 
     static private Random rnd = new Random();
+
     public static void main(String[] args) {
 
         //create dogs
@@ -39,6 +38,7 @@ public class HomeWorkApp {
         System.out.println(Animal.getCounter() + " objects of superclass \"Animal\" have been created");
         System.out.println(Dog.getCounter() + " objects of class \"Dog\" have been created");
         System.out.println(Cat.getCounter() + " objects of class \"Cat\" have been created");
+
     }
 
 }
@@ -50,6 +50,24 @@ interface IAnimal {
     String run(int distance);
 
     String swim(int distance);
+
+    String getColor();
+
+    int getWeight();
+
+    String getName();
+
+    int getMaxDistanceSwim();
+
+    int getMaxDistanceRun();
+
+    void setMaxDistanceRun(int maxDistanceRun);
+
+    void setMaxDistanceSwim(int maxDistanceSwim);
+
+    void setName(String name);
+
+    void setWeight(int weight);
 }
 
 /**
@@ -73,7 +91,7 @@ abstract class Animal implements IAnimal {
     }
 
     Animal(int weight, String color, int maxDistanceSwim, int maxDistanceRun) {
-        this("noname", weight, color, maxDistanceSwim, maxDistanceRun);
+        this("noName", weight, color, maxDistanceSwim, maxDistanceRun);
     }
 
     @Override
@@ -84,12 +102,28 @@ abstract class Animal implements IAnimal {
         );
     }
 
-    static public int getCount() {
+    public static int getCounter() {
         return counter;
     }
 
-    public static int getCounter() {
-        return counter;
+    public String getColor() {
+        return color;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMaxDistanceSwim() {
+        return maxDistanceSwim;
+    }
+
+    public int getMaxDistanceRun() {
+        return maxDistanceRun;
     }
 
     public void setMaxDistanceRun(int maxDistanceRun) {
@@ -102,13 +136,23 @@ abstract class Animal implements IAnimal {
             this.maxDistanceSwim = maxDistanceSwim;
     }
 
+    public void setName(String name) {
+        if (name.length() > 3)
+            this.name = name;
+    }
+
+    public void setWeight(int weight) {
+        if (weight > 0)
+            this.weight = weight;
+    }
+
 }
 
 /**
  * child class 1
  */
 class Dog extends Animal {
-    static protected int counter = 0;
+    static private int counter = 0;
 
     Dog(String name, int weight, String color, int maxDistanceSwim, int maxDistanceRun) {
         super(name, weight, color, maxDistanceSwim, maxDistanceRun);
@@ -128,14 +172,14 @@ class Dog extends Animal {
     public String run(int distance) {
         if (distance <= maxDistanceRun)
             return "The dog has run " + distance + " steps\n";
-        return "The dog cann't run " + distance + " steps. Maximum " + maxDistanceRun + "\n";
+        return "The dog can't run " + distance + " steps. Maximum " + maxDistanceRun + "\n";
     }
 
     @Override
     public String swim(int distance) {
         if (distance <= maxDistanceSwim)
             return "The dog has swum " + distance + " meters\n";
-        return "The dog cann't swim " + distance + " meters. Maximum " + maxDistanceSwim + "\n";
+        return "The dog can't swim " + distance + " meters. Maximum " + maxDistanceSwim + "\n";
     }
 }
 
@@ -143,7 +187,7 @@ class Dog extends Animal {
  * child class 2
  */
 class Cat extends Animal {
-    static protected int counter = 0;
+    static private int counter = 0;
 
     Cat(String name, int weight, String color, int maxDistanceRun) {
         super(name, weight, color, 0, maxDistanceRun);
@@ -163,7 +207,7 @@ class Cat extends Animal {
     public String run(int distance) {
         if (distance <= maxDistanceRun)
             return "The cat has run " + distance + " steps\n";
-        return "The cat cann't run " + distance + " steps. Maximum " + maxDistanceRun + "\n";
+        return "The cat can't run " + distance + " steps. Maximum " + maxDistanceRun + "\n";
     }
 
     @Override
