@@ -25,14 +25,14 @@ public class HomeWorkApp {
         IAnimal catStray1 = new Cat(21, "black", 200);
         IAnimal catStray2 = new Cat(16, "dirty", 85);
 
-        IAnimal[] dogs = {dogSonja, dogKesha, dogPip, dogDrug, dogStray1, dogStray2,
+        IAnimal[] pets = {dogSonja, dogKesha, dogPip, dogDrug, dogStray1, dogStray2,
                 catPip, catDrug, catStray1, catStray2};
 
-        for (IAnimal oneAnimal : dogs) {
-            System.out.println(oneAnimal.getClass());
-            System.out.print(oneAnimal);
-            System.out.print(oneAnimal.run(rnd.nextInt(700)));
-            System.out.println(oneAnimal.swim(rnd.nextInt(15)));
+        for (IAnimal pet : pets) {
+            System.out.println(pet.getClass());
+            System.out.print(pet);
+            System.out.print(pet.run(rnd.nextInt(700)));
+            System.out.println(pet.swim(rnd.nextInt(15)));
         }
 
         System.out.println(Animal.getCounter() + " objects of superclass \"Animal\" have been created");
