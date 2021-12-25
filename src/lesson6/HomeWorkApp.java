@@ -35,10 +35,15 @@ public class HomeWorkApp {
             System.out.println(pet.swim(rnd.nextInt(15)));
         }
 
+        System.out.println();
+//        catPip.test();
+        Animal test = new Cat(1, "d", 1);
+        test.test();
+
+        System.out.println();
         System.out.println(Animal.getCounter() + " objects of superclass \"Animal\" have been created");
         System.out.println(Dog.getCounter() + " objects of class \"Dog\" have been created");
         System.out.println(Cat.getCounter() + " objects of class \"Cat\" have been created");
-
     }
 
 }
@@ -144,6 +149,10 @@ abstract class Animal implements IAnimal {
     public void setWeight(int weight) {
         if (weight > 0)
             this.weight = weight;
+    }
+
+    public void test() { //без объявления в интерфейсе
+        System.out.println("Method is available");
     }
 
 }
