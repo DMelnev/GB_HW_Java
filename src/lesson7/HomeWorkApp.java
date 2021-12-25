@@ -24,7 +24,7 @@ public class HomeWorkApp {
 
 
         System.out.println("plate: " + plate.info());
-        plate.addfood(20);
+        plate.addFood(20);
         System.out.println("plate: " + plate.info());
 
         for (Cat pet : pets)
@@ -69,6 +69,10 @@ class Cat {
     public String getName() {
         return name;
     }
+    @Override
+    public String toString(){
+        return format
+    }
 }
 
 /**
@@ -89,7 +93,7 @@ class Plate {
         return food;
     }
 
-    public void addfood(int add) {
+    public void addFood(int add) {
         if (add > 0)
             food += add;
     }
