@@ -14,14 +14,13 @@ public class HomeWorkApp {
         pets[4] = new Cat("Starsick", 11);
         pets[5] = new Cat("Moonsick", 10);
         pets[6] = new Cat("Tablesick", 16);
-
+//        System.out.println(pets[0]);
         Plate plate = new Plate(70);
 
         System.out.println("plate: " + plate.info());
 
         for (Cat pet : pets)
             System.out.printf(answer(pet.getIsFull(), pet.eat(plate)), pet.getName());
-
 
         System.out.println("plate: " + plate.info());
         plate.addFood(20);
@@ -69,9 +68,13 @@ class Cat {
     public String getName() {
         return name;
     }
+
     @Override
-    public String toString(){
-        return format
+    public String toString() {
+        return String.format(
+                "Name :%s \nAppetite :%d \n%s\n",
+                name, appetite, (isFull) ? "Full" : "Hungry"
+        );
     }
 }
 
