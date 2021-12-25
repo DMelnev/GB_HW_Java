@@ -212,6 +212,6 @@ class Cat extends Animal {
 
     @Override
     public String swim(int distance) {
-        return "The cat doesn't wanna swim.\n";
+        return "Cats doesn't wanna swim.\n";
     }
 }
