@@ -9,11 +9,11 @@ public class HomeWorkApp {
         Cat[] pets = new Cat[7];
         pets[0] = new Cat("Barsick", 15);
         pets[1] = new Cat("Mursick", 14);
-        pets[2] = new Cat("Applesick", 13);
-        pets[3] = new Cat("Bulbsick", 12);
-        pets[4] = new Cat("Starsick", 11);
-        pets[5] = new Cat("Moonsick", 10);
-        pets[6] = new Cat("Tablesick", 16);
+        pets[2] = new Cat("Baker", 13);
+        pets[3] = new Cat("Bulb", 12);
+        pets[4] = new Cat("Star", 11);
+        pets[5] = new Cat("Monstrick", 10);
+        pets[6] = new Cat("Tablet", 16);
 //        System.out.println(pets[0]);
         Plate plate = new Plate(70);
 
@@ -53,7 +53,7 @@ class Cat {
     }
 
     public boolean eat(Plate plate) {
-        if ((appetite <= plate.info()) && !isFull) {
+        if (!isFull && appetite <= plate.info()) {
             plate.decreaseFood(appetite);
             isFull = true;
             return true;
