@@ -1,22 +1,29 @@
 /**
+ *
  * @author Melnev Dmitry
  * @version 2021-12-25
+ *
  */
 package lesson6;
 
+import java.util.Random;
+
 public class HomeWorkApp {
+
+    static private Random rnd = new Random();
     public static void main(String[] args) {
-        //dogs
-        IAnimal dogSonja = new Dog("Sonja", 23, "black", 12, 120);
-        IAnimal dogKesha = new Dog("Kesha", 38, "gray", 50, 50);
-        IAnimal dogPip = new Dog("Pip", 25, "russet", 13, 110);
-        IAnimal dogDrug = new Dog("Drug", 3, "brown", 5, 25);
-        IAnimal dogStray1 = new Dog(21, "white", 10, 132);
-        IAnimal dogStray2 = new Dog(16, "dirty", 7, 85);
-        //cats
-        IAnimal catPip = new Cat("Pip", 25, "russet", 110);
-        IAnimal catDrug = new Cat("Drug", 3, "brown", 25);
-        IAnimal catStray1 = new Cat(21, "white", 132);
+
+        //create dogs
+        IAnimal dogSonja = new Dog("Sonja", 23, "black", 10, 500);
+        IAnimal dogKesha = new Dog("Kesha", 38, "gray", 10, 500);
+        IAnimal dogPip = new Dog("Pip", 25, "russet", 10, 500);
+        IAnimal dogDrug = new Dog("Drug", 3, "brown", 5, 200);
+        IAnimal dogStray1 = new Dog(21, "white", 10, 500);
+        IAnimal dogStray2 = new Dog(16, "dirty", 7, 300);
+        //create cats
+        IAnimal catPip = new Cat("Pip", 25, "russet", 200);
+        IAnimal catDrug = new Cat("Drug", 3, "brown", 200);
+        IAnimal catStray1 = new Cat(21, "black", 200);
         IAnimal catStray2 = new Cat(16, "dirty", 85);
 
         IAnimal[] dogs = {dogSonja, dogKesha, dogPip, dogDrug, dogStray1, dogStray2,
@@ -25,15 +32,13 @@ public class HomeWorkApp {
         for (IAnimal oneAnimal : dogs) {
             System.out.println(oneAnimal.getClass());
             System.out.print(oneAnimal);
-            System.out.print(oneAnimal.run(100));
-            System.out.println(oneAnimal.swim(11));
+            System.out.print(oneAnimal.run(rnd.nextInt(700)));
+            System.out.println(oneAnimal.swim(rnd.nextInt(15)));
         }
 
-        System.out.println("Had created " + Animal.getCounter() + " objects superclass \"Animal\" ");
-        System.out.println("Had created " + Dog.getCounter() + " objects class \"Dog\" ");
-        System.out.println("Had created " + Cat.getCounter() + " objects class \"Cat\" ");
-
-
+        System.out.println(Animal.getCounter() + " objects of superclass \"Animal\" have been created");
+        System.out.println(Dog.getCounter() + " objects of class \"Dog\" have been created");
+        System.out.println(Cat.getCounter() + " objects of class \"Cat\" have been created");
     }
 
 }
@@ -48,7 +53,7 @@ interface IAnimal {
 }
 
 /**
- * abstract class
+ * parent abstract class
  */
 abstract class Animal implements IAnimal {
     protected String name;
@@ -67,8 +72,12 @@ abstract class Animal implements IAnimal {
         counter++;
     }
 
+    Animal(int weight, String color, int maxDistanceSwim, int maxDistanceRun) {
+        this("noname", weight, color, maxDistanceSwim, maxDistanceRun);
+    }
+
     @Override
-    public String toString() {
+    public final String toString() { // запрещаем потомкам изменять toString ))
         return String.format(
                 "Name: %s \nWeight: %d \nColor: %s\n",
                 name, weight, color
@@ -79,12 +88,13 @@ abstract class Animal implements IAnimal {
         return counter;
     }
 
-    public boolean setMaxDistanceRun(int maxDistanceRun) {
-        if (maxDistanceRun > 0) {
+    public static int getCounter() {
+        return counter;
+    }
+
+    public void setMaxDistanceRun(int maxDistanceRun) {
+        if (maxDistanceRun > 0)
             this.maxDistanceRun = maxDistanceRun;
-            return true;
-        }
-        return false;
     }
 
     public void setMaxDistanceSwim(int maxDistanceSwim) {
@@ -92,34 +102,6 @@ abstract class Animal implements IAnimal {
             this.maxDistanceSwim = maxDistanceSwim;
     }
 
-    public void setWeight(int weight) {
-        if (weight > 0)
-            this.weight = weight;
-    }
-
-    public static int getCounter() {
-        return counter;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public int getMaxDistanceRun() {
-        return maxDistanceRun;
-    }
-
-    public int getMaxDistanceSwim() {
-        return maxDistanceSwim;
-    }
 }
 
 /**
@@ -134,14 +116,10 @@ class Dog extends Animal {
     }
 
     Dog(int weight, String color, int maxDistanceSwim, int maxDistanceRun) {
-        this("noname", weight, color, maxDistanceSwim, maxDistanceRun);
+        super(weight, color, maxDistanceSwim, maxDistanceRun);
+        counter++;
     }
 
-    //    @Override
-//    protected void finalize() throws Throwable { //вызов деструктора. но он depricated oO
-//        counter--; //уменьшениия счетчика после удаления
-//        super.finalize();
-//    }
     static public int getCounter() {
         return counter;
     }
@@ -173,7 +151,8 @@ class Cat extends Animal {
     }
 
     Cat(int weight, String color, int maxDistanceRun) {
-        this("noname", weight, color, maxDistanceRun);
+        super(weight, color, 0, maxDistanceRun);
+        counter++;
     }
 
     static public int getCounter() {
@@ -189,6 +168,6 @@ class Cat extends Animal {
 
     @Override
     public String swim(int distance) {
-        return "Cats cann't swim\n";
+        return "The cat doesn't wanna swim.\n";
     }
 }
