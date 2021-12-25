@@ -20,19 +20,19 @@ public class HomeWorkApp {
         System.out.println("plate: " + plate.info());
 
         for (Cat pet : pets)
-            System.out.printf(answer(pet.getIsFull(), pet.eat(plate)), pet.getName());
+            System.out.printf(answer(pet.eat(plate), pet.getIsFull()), pet.getName());
 
         System.out.println("plate: " + plate.info());
         plate.addFood(20);
         System.out.println("plate: " + plate.info());
 
         for (Cat pet : pets)
-            System.out.printf(answer(pet.getIsFull(), pet.eat(plate)), pet.getName());
+            System.out.printf(answer(pet.eat(plate), pet.getIsFull()), pet.getName());
 
         System.out.println("plate: " + plate.info());
     }
 
-    private static String answer(boolean isFull, boolean hasEaten) {
+    private static String answer(boolean hasEaten, boolean isFull) {
         return (hasEaten) ? "The kitten %s has eaten.\n" :
                 (isFull) ? "%s is full.\n" : "There's not enough food for %s.\n";
     }
