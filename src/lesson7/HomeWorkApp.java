@@ -53,9 +53,9 @@ class Cat {
         isFull = false;
     }
 
-    public boolean eat(Plate p) {
-        if ((appetite <= p.info()) && !isFull) {
-            p.decreaseFood(appetite);
+    public boolean eat(Plate plate) {
+        if ((appetite <= plate.info()) && !isFull) {
+            plate.decreaseFood(appetite);
             isFull = true;
             return true;
         }
