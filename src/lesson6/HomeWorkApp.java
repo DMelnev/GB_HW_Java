@@ -1,25 +1,51 @@
+/**
+ * @author Melnev Dmitry
+ * @version 2021-12-25
+ */
+package lesson6;
+
 public class HomeWorkApp {
     public static void main(String[] args) {
-        System.out.println(TestParent.test(1));
-        System.out.println(TestClass.test(1));
 
     }
 
 }
 
-class TestClass extends TestParent {
+interface IAnimal {
+    String run(int distance);
 
-    static int test(int asd) {
-        asd ^= 1;
-        return asd;
-    }
+    String swim(int distance);
 }
 
-class TestParent {
-    static int asd;
+abstract class Animal implements IAnimal {
+    protected int maxDistanceRun, maxDistanceSwim;
 
-    static int test(int asd) {
-        asd += asd;
-        return asd;
+    Animal(int maxDistanceSwim, int maxDistanceRun) {
+        this.maxDistanceRun = maxDistanceRun;
+        this.maxDistanceSwim = maxDistanceSwim;
+    }
+
+    public boolean setMaxDistanceRun(int maxDistanceRun) {
+        if (maxDistanceRun > 0) {
+            this.maxDistanceRun = maxDistanceRun;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setMaxDistanceSwim(int maxDistanceSwim) {
+        if (maxDistanceSwim > 0) {
+            this.maxDistanceSwim = maxDistanceSwim;
+            return true;
+        }
+        return false;
+    }
+
+    public int getMaxDistanceRun() {
+        return maxDistanceRun;
+    }
+
+    public int getMaxDistanceSwim() {
+        return maxDistanceSwim;
     }
 }
