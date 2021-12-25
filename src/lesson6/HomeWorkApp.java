@@ -36,9 +36,9 @@ public class HomeWorkApp {
         }
 
         System.out.println();
-//        catPip.test();
+//        catPip.test(); //don't work
         Animal test = new Cat(1, "d", 1);
-        test.test();
+        test.test();//work
 
         System.out.println();
         System.out.println(Animal.getCounter() + " objects of superclass \"Animal\" have been created");
