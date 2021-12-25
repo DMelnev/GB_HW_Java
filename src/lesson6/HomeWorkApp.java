@@ -152,7 +152,7 @@ abstract class Animal implements IAnimal {
  * child class 1
  */
 class Dog extends Animal {
-    static private int counter = 0;
+    private static int counter = 0;
 
     Dog(String name, int weight, String color, int maxDistanceSwim, int maxDistanceRun) {
         super(name, weight, color, maxDistanceSwim, maxDistanceRun);
@@ -164,7 +164,7 @@ class Dog extends Animal {
         counter++;
     }
 
-    static public int getCounter() {
+    public static int getCounter() {
         return counter;
     }
 
@@ -187,7 +187,7 @@ class Dog extends Animal {
  * child class 2
  */
 class Cat extends Animal {
-    static private int counter = 0;
+    private static int counter = 0;
 
     Cat(String name, int weight, String color, int maxDistanceRun) {
         super(name, weight, color, 0, maxDistanceRun);
@@ -199,7 +199,7 @@ class Cat extends Animal {
         counter++;
     }
 
-    static public int getCounter() {
+    public static int getCounter() {
         return counter;
     }
 
