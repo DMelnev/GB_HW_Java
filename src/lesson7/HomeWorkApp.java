@@ -1,4 +1,6 @@
 /**
+ * Java 1. Lesson 7
+ *
  * @author Dmitriy Melnev
  * @version 2021-12-25
  */
@@ -8,33 +10,36 @@ public class HomeWorkApp {
     public static void main(String[] args) {
         Cat[] pets = new Cat[7];
         pets[0] = new Cat("Barsick", 15);
-        pets[1] = new Cat("Mursick", 14);
+        pets[1] = new Cat("Murzick", 14);
         pets[2] = new Cat("Baker", 13);
         pets[3] = new Cat("Bulb", 12);
-        pets[4] = new Cat("Star", 11);
-        pets[5] = new Cat("Monstrick", 10);
+        pets[4] = new Cat("Conan", 11);
+        pets[5] = new Cat("Monster", 10);
         pets[6] = new Cat("Tablet", 16);
-//        System.out.println(pets[0]);
+
         Plate plate = new Plate(70);
 
-        System.out.println("plate: " + plate.info());
+        System.out.println("Start plate: " + plate.info() + "\n");
 
-        for (Cat pet : pets)
-            System.out.printf(answer(pet.eat(plate), pet.getIsFull()), pet.getName());
+        for (Cat pet : pets) {
+            System.out.print(pet);
+            System.out.printf(eating(pet, plate), pet.getName());
+            System.out.println("Food left: " + plate + "\n");
+        }
+        System.out.print("Added to plate: " + plate);
+        plate.addFood(21);
+        System.out.println(" + 21 = " + plate + "\n");
 
-        System.out.println("plate: " + plate.info());
-        plate.addFood(20);
-        System.out.println("plate: " + plate.info());
-
-        for (Cat pet : pets)
-            System.out.printf(answer(pet.eat(plate), pet.getIsFull()), pet.getName());
-
-        System.out.println("plate: " + plate.info());
+        for (Cat pet : pets) {
+            System.out.print(pet);
+            System.out.printf(eating(pet, plate), pet.getName());
+            System.out.println("Food left: " + plate + "\n");
+        }
     }
 
-    private static String answer(boolean hasEaten, boolean isFull) {
-        return (hasEaten) ? "The kitten %s has eaten.\n" :
-                (isFull) ? "%s is full.\n" : "There's not enough food for %s.\n";
+    private static String eating(Cat pet, Plate plate) {
+        return (pet.eat(plate)) ? "%s has eaten.\n" :
+                (pet.getIsFull()) ? "%s is full.\n" : "There's not enough food for %s.\n";
     }
 }
 
@@ -44,17 +49,15 @@ public class HomeWorkApp {
 class Cat {
     private String name;
     private int appetite;
-    private boolean isFull;
+    private boolean isFull = false;
 
     public Cat(String name, int appetite) {
         this.name = name;
         this.appetite = appetite;
-        isFull = false;
     }
 
     public boolean eat(Plate plate) {
-        if (!isFull && appetite <= plate.info()) {
-            plate.decreaseFood(appetite);
+        if (!isFull && plate.decreaseFood(appetite)) { //если левая часть == false, правая не будет выполняться.
             isFull = true;
             return true;
         }
@@ -72,12 +75,11 @@ class Cat {
     @Override
     public String toString() {
         return String.format(
-                "Name :%s \nAppetite :%d \n%s\n",
-                name, appetite, (isFull) ? "Full" : "Hungry"
+                "%s, appetite - %d, is %s\n",
+                name, appetite, (isFull) ? "full" : "hungry"
         );
     }
 }
-
 /**
  * class Plate
  */
@@ -88,8 +90,16 @@ class Plate {
         this.food = food;
     }
 
-    public void decreaseFood(int n) {
-        food -= n;
+    public boolean decreaseFood(int n) {
+        if (food >= n) {
+            food -= n;
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public String toString(){
+        return Integer.toString(food);
     }
 
     public int info() {
@@ -97,7 +107,6 @@ class Plate {
     }
 
     public void addFood(int add) {
-        if (add > 0)
-            food += add;
+        food += (add > 0) ? add : 0;
     }
 }
