@@ -2,7 +2,7 @@
  * Java 1. Lesson 7
  *
  * @author Dmitriy Melnev
- * @version 2021-12-25
+ * @version 2021-12-28
  */
 package lesson7;
 
